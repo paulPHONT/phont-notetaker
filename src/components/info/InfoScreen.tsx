@@ -1,4 +1,5 @@
 import { ExternalLink } from "lucide-react";
+import phontLogo from "@/assets/phont-logo.png";
 
 export const InfoScreen = () => {
   return (
@@ -8,9 +9,7 @@ export const InfoScreen = () => {
           
           {/* Logo and tagline */}
           <div className="text-center space-y-4 opacity-0 fade-in">
-            <h1 className="text-4xl font-display font-bold tracking-tight">
-              PHONT<span className="text-accent">.</span>
-            </h1>
+            <img src={phontLogo} alt="PHONT" className="h-12 w-auto mx-auto" />
             <p className="text-muted-foreground">
               What was said. What mattered. What can be reused.
             </p>

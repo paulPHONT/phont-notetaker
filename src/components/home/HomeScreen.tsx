@@ -12,11 +12,11 @@ export const HomeScreen = ({ onNavigate }: HomeScreenProps) => {
   };
 
   return (
-    <div className="h-[calc(100dvh-4rem)] flex flex-col overflow-hidden">
-      {/* Hero Section */}
+    <div className="min-h-[calc(100dvh-4rem)] flex flex-col">
+      {/* Hero Section - responsive height */}
       <section className="relative flex-shrink-0">
         {/* Hero Image */}
-        <div className="relative h-32 sm:h-44 md:h-56 overflow-hidden">
+        <div className="relative h-28 sm:h-40 md:h-56 overflow-hidden">
           <img 
             src={heroImage} 
             alt="Event stage with dramatic lighting" 
@@ -25,8 +25,8 @@ export const HomeScreen = ({ onNavigate }: HomeScreenProps) => {
           <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
         </div>
         
-        {/* Currently Speaking - overlapping hero */}
-        <div className="px-4 -mt-10 sm:-mt-12 relative z-10">
+        {/* Currently Speaking - overlapping hero, responsive margins */}
+        <div className="px-4 -mt-8 sm:-mt-12 relative z-10">
           <div className="max-w-lg mx-auto">
             <CurrentlySpeaking 
               className="opacity-0 fade-in" 
@@ -36,9 +36,12 @@ export const HomeScreen = ({ onNavigate }: HomeScreenProps) => {
         </div>
       </section>
       
-      {/* Feature Grid */}
-      <section className="flex-1 px-4 pt-4 sm:pt-6 pb-4 overflow-hidden">
-        <div className="max-w-lg mx-auto h-full">
+      {/* Spacer - responsive */}
+      <div className="flex-1 min-h-4 sm:min-h-6" />
+      
+      {/* Feature Grid - fixed at bottom */}
+      <section className="flex-shrink-0 px-4 pb-4 sm:pb-6">
+        <div className="max-w-lg mx-auto">
           <FeatureGrid onNavigate={onNavigate} />
         </div>
       </section>

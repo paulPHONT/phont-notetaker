@@ -2,6 +2,7 @@ import { Sparkles } from "lucide-react";
 import thumbPost from "@/assets/thumb-post.jpg";
 import thumbClips from "@/assets/thumb-clips.jpg";
 import thumbQuotes from "@/assets/thumb-quotes.jpg";
+import phontLogo from "@/assets/phont-logo.png";
 
 interface MockOutputProps {
   type: 'poster' | 'clips' | 'quotes' | 'press';
@@ -34,7 +35,7 @@ export const MockOutput = ({ type }: MockOutputProps) => {
               </div>
               <div className="relative flex items-center justify-between">
                 <span className="text-xs text-muted-foreground">Future of Energy Summit 2025</span>
-                <span className="text-xs font-display font-bold text-accent">PHONT</span>
+                <img src={phontLogo} alt="PHONT" className="h-4 w-auto" />
               </div>
             </div>
             
@@ -71,7 +72,7 @@ export const MockOutput = ({ type }: MockOutputProps) => {
               
               {/* PHONT watermark */}
               <div className="absolute top-4 right-4">
-                <span className="text-xs font-display font-bold text-accent/80">PHONT</span>
+                <img src={phontLogo} alt="PHONT" className="h-4 w-auto opacity-80" />
               </div>
             </div>
             
@@ -109,7 +110,7 @@ export const MockOutput = ({ type }: MockOutputProps) => {
               
               <div className="relative z-10 flex items-center justify-between pt-2">
                 <span className="text-xs text-muted-foreground">11:24 AM • Main Stage</span>
-                <span className="text-xs font-display font-bold text-accent">PHONT</span>
+                <img src={phontLogo} alt="PHONT" className="h-4 w-auto" />
               </div>
             </div>
             
@@ -147,7 +148,7 @@ export const MockOutput = ({ type }: MockOutputProps) => {
               
               <div className="pt-2 flex items-center justify-between">
                 <span className="text-xs text-muted-foreground">Auto-formatted from session transcript</span>
-                <span className="text-xs font-display font-bold text-accent">PHONT</span>
+                <img src={phontLogo} alt="PHONT" className="h-4 w-auto" />
               </div>
             </div>
             
