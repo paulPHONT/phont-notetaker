@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Header } from "@/components/layout/Header";
-import { BottomNav } from "@/components/layout/BottomNav";
 import { HomeScreen } from "@/components/home/HomeScreen";
 import { SocialContentPanel } from "@/components/panels/SocialContentPanel";
 import { MockOutput } from "@/components/panels/MockOutput";
@@ -10,7 +9,7 @@ import { BusinessPanel } from "@/components/panels/BusinessPanel";
 import { SocialWallPanel } from "@/components/panels/SocialWallPanel";
 import { InfoScreen } from "@/components/info/InfoScreen";
 
-type Tab = 'home' | 'panels' | 'info';
+type View = 'home' | 'info';
 type Panel = 'social' | 'analysis' | 'handout' | 'business' | 'social-wall' | null;
 type Feature = 'poster' | 'clips' | 'quotes' | 'press' | null;
 
@@ -30,13 +29,12 @@ const featureTitles: Record<string, string> = {
 };
 
 const Index = () => {
-  const [activeTab, setActiveTab] = useState<Tab>('home');
+  const [view, setView] = useState<View>('home');
   const [activePanel, setActivePanel] = useState<Panel>(null);
   const [activeFeature, setActiveFeature] = useState<Feature>(null);
 
   const handleNavigate = (panel: string) => {
     setActivePanel(panel as Panel);
-    setActiveTab('panels');
   };
 
   const handleSelectFeature = (feature: string) => {
@@ -48,19 +46,17 @@ const Index = () => {
       setActiveFeature(null);
     } else if (activePanel) {
       setActivePanel(null);
-      setActiveTab('home');
+    } else if (view === 'info') {
+      setView('home');
     }
   };
 
-  const handleTabChange = (tab: Tab) => {
-    setActiveTab(tab);
-    if (tab === 'home') {
-      setActivePanel(null);
-      setActiveFeature(null);
-    }
+  const handleInfoClick = () => {
+    setView('info');
   };
 
   const getTitle = () => {
+    if (view === 'info') return 'Info';
     if (activeFeature && featureTitles[activeFeature]) {
       return featureTitles[activeFeature];
     }
@@ -70,11 +66,11 @@ const Index = () => {
     return undefined;
   };
 
-  const showBack = Boolean(activePanel || activeFeature);
+  const showBack = view === 'info' || Boolean(activePanel || activeFeature);
 
   const renderContent = () => {
-    // Info tab
-    if (activeTab === 'info') {
+    // Info view
+    if (view === 'info') {
       return <InfoScreen />;
     }
 
@@ -110,17 +106,14 @@ const Index = () => {
       <Header 
         title={getTitle()} 
         showBack={showBack} 
-        onBack={handleBack} 
+        onBack={handleBack}
+        onInfoClick={handleInfoClick}
+        showInfo={!showBack}
       />
       
       <main className="pt-0">
         {renderContent()}
       </main>
-      
-      <BottomNav 
-        activeTab={activeTab} 
-        onTabChange={handleTabChange} 
-      />
     </div>
   );
 };
