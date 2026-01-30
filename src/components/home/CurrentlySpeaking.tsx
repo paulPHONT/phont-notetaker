@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
+import speakerImage from "@/assets/speaker-sarah.jpg";
 
 interface CurrentlySpeakingProps {
   className?: string;
@@ -19,9 +20,11 @@ export const CurrentlySpeaking = ({ className, onViewTranscript }: CurrentlySpea
       </div>
       
       <div className="flex items-center gap-3 mb-3">
-        <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-sm font-semibold flex-shrink-0">
-          SM
-        </div>
+        <img 
+          src={speakerImage} 
+          alt="Dr. Sarah Mitchell" 
+          className="w-12 h-12 rounded-full object-cover flex-shrink-0"
+        />
         <div className="min-w-0">
           <p className="text-sm font-semibold">Dr. Sarah Mitchell</p>
           <p className="text-xs text-muted-foreground">CEO, GreenTech Ventures</p>

@@ -26,7 +26,7 @@ export const Header = ({
       "sticky top-0 z-40 glass-panel-strong border-b border-border/50",
       className
     )}>
-      <div className="flex items-center justify-between h-14 px-4 max-w-4xl mx-auto">
+      <div className="flex items-center justify-between h-16 px-4 max-w-4xl mx-auto">
         {/* Left side */}
         <div className="flex items-center min-w-0 flex-1">
           {showBack ? (
@@ -37,7 +37,7 @@ export const Header = ({
               <ArrowLeft className="w-5 h-5" strokeWidth={1.5} />
             </button>
           ) : (
-            <img src={phontLogo} alt="PHONT" className="h-5 w-auto" />
+            <img src={phontLogo} alt="PHONT" className="h-7 w-auto" />
           )}
         </div>
         
@@ -46,7 +46,7 @@ export const Header = ({
           {title ? (
             <h1 className="text-base font-display font-normal tracking-tight">{title}</h1>
           ) : eventTitle ? (
-            <h1 className="text-base font-display font-normal tracking-tight">{eventTitle}</h1>
+            <h1 className="text-lg font-display font-normal tracking-tight">{eventTitle}</h1>
           ) : null}
         </div>
         
