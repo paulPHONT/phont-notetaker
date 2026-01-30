@@ -35,7 +35,7 @@ export const MockOutput = ({ type }: MockOutputProps) => {
             </div>
             
             <p className="text-sm text-muted-foreground text-center">
-              Automatically generated from live speech. Ready for social media.
+              Automatically generated from live speech. Ready for Instagram, LinkedIn & X.
             </p>
           </div>
         );

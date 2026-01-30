@@ -60,8 +60,8 @@ export const SocialContentPanel = ({ onSelectFeature }: SocialContentPanelProps)
     {
       id: 'poster',
       icon: Image,
-      label: 'Poster Generator',
-      subtitle: 'Bold typographic posters',
+      label: 'Post Generator',
+      subtitle: 'Social media posts',
       image: samplePoster,
     },
     {

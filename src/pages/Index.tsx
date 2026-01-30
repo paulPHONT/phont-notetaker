@@ -22,7 +22,7 @@ const panelTitles: Record<string, string> = {
 };
 
 const featureTitles: Record<string, string> = {
-  'poster': 'Poster Generator',
+  'poster': 'Post Generator',
   'clips': 'Highlight Clips',
   'quotes': 'Quote Cards',
   'press': 'Press Releases',
