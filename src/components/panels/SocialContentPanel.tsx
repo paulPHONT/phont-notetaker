@@ -1,8 +1,9 @@
 import { Image, Video, Quote, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LucideIcon } from "lucide-react";
-import samplePost from "@/assets/sample-post.png";
-import sampleClips from "@/assets/sample-clips.jpg";
+import thumbPost from "@/assets/thumb-post.jpg";
+import thumbClips from "@/assets/thumb-clips.jpg";
+import thumbQuotes from "@/assets/thumb-quotes.jpg";
 import sampleQuotes from "@/assets/sample-quotes.png";
 import samplePress from "@/assets/sample-press.jpg";
 
@@ -62,14 +63,14 @@ export const SocialContentPanel = ({ onSelectFeature }: SocialContentPanelProps)
       icon: Image,
       label: 'Post Generator',
       subtitle: 'Social media posts',
-      image: samplePost,
+      image: thumbPost,
     },
     {
       id: 'clips',
       icon: Video,
       label: 'Highlight Clips',
       subtitle: 'Video with subtitles',
-      image: sampleClips,
+      image: thumbClips,
     },
     {
       id: 'quotes',
