@@ -67,6 +67,7 @@ const Index = () => {
   };
 
   const showBack = view === 'info' || Boolean(activePanel || activeFeature);
+  const isHome = view === 'home' && !activePanel && !activeFeature;
 
   const renderContent = () => {
     // Info view
@@ -105,6 +106,7 @@ const Index = () => {
     <div className="min-h-screen bg-background dark">
       <Header 
         title={getTitle()} 
+        eventTitle={isHome ? "Future of Energy Summit 2025" : undefined}
         showBack={showBack} 
         onBack={handleBack}
         onInfoClick={handleInfoClick}

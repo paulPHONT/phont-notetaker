@@ -4,6 +4,7 @@ import phontLogo from "@/assets/phont-logo.png";
 
 interface HeaderProps {
   title?: string;
+  eventTitle?: string;
   showBack?: boolean;
   onBack?: () => void;
   onInfoClick?: () => void;
@@ -13,6 +14,7 @@ interface HeaderProps {
 
 export const Header = ({ 
   title, 
+  eventTitle,
   showBack, 
   onBack, 
   onInfoClick,
@@ -25,34 +27,40 @@ export const Header = ({
       className
     )}>
       <div className="flex items-center justify-between h-14 px-4 max-w-4xl mx-auto">
-        <div className="flex items-center">
-          {showBack && (
+        {/* Left side */}
+        <div className="flex items-center min-w-0 flex-1">
+          {showBack ? (
             <button 
               onClick={onBack}
-              className="mr-3 p-2 -ml-2 text-muted-foreground hover:text-foreground transition-colors"
+              className="p-2 -ml-2 text-muted-foreground hover:text-foreground transition-colors"
             >
               <ArrowLeft className="w-5 h-5" strokeWidth={1.5} />
             </button>
-          )}
-          
-          {title ? (
-            <h1 className="text-lg font-display font-semibold tracking-tight">{title}</h1>
           ) : (
-            <div className="flex items-center gap-2">
-              <img src={phontLogo} alt="PHONT" className="h-6 w-auto" />
-              <span className="text-accent text-sm font-medium">Live</span>
-            </div>
+            <img src={phontLogo} alt="PHONT" className="h-5 w-auto" />
           )}
         </div>
         
-        {showInfo && onInfoClick && (
-          <button 
-            onClick={onInfoClick}
-            className="p-2 -mr-2 text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <Info className="w-5 h-5" strokeWidth={1.5} />
-          </button>
-        )}
+        {/* Center - Event or Panel Title */}
+        <div className="flex-shrink-0 text-center">
+          {title ? (
+            <h1 className="text-base font-display font-normal tracking-tight">{title}</h1>
+          ) : eventTitle ? (
+            <h1 className="text-base font-display font-normal tracking-tight">{eventTitle}</h1>
+          ) : null}
+        </div>
+        
+        {/* Right side */}
+        <div className="flex items-center justify-end min-w-0 flex-1">
+          {showInfo && onInfoClick && (
+            <button 
+              onClick={onInfoClick}
+              className="p-2 -mr-2 text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Info className="w-5 h-5" strokeWidth={1.5} />
+            </button>
+          )}
+        </div>
       </div>
     </header>
   );
