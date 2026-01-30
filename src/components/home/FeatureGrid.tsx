@@ -104,7 +104,7 @@ export const FeatureGrid = ({ onNavigate }: FeatureGridProps) => {
 
   return (
     <>
-      <div className="h-full flex flex-col gap-3 sm:gap-4">
+      <div className="flex flex-col gap-3 sm:gap-4">
         {/* View Mode Pills */}
         <div className="opacity-0 fade-in flex gap-2 flex-shrink-0" style={{ animationDelay: '50ms' }}>
           <button
@@ -142,8 +142,8 @@ export const FeatureGrid = ({ onNavigate }: FeatureGridProps) => {
           </button>
         </div>
 
-        {/* 2x3 Grid - fills remaining space */}
-        <div className="grid grid-cols-2 gap-2 sm:gap-3 flex-1 auto-rows-fr">
+        {/* 2x3 Grid - auto height */}
+        <div className="grid grid-cols-2 gap-2 sm:gap-3">
           {/* Feature Header Cell */}
           <GridItem 
             label="Features" 

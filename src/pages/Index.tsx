@@ -14,7 +14,7 @@ type Panel = 'social' | 'analysis' | 'handout' | 'business' | 'social-wall' | nu
 type Feature = 'poster' | 'clips' | 'quotes' | 'press' | null;
 
 const panelTitles: Record<string, string> = {
-  'social': 'Social Content API',
+  'social': 'Social Content',
   'analysis': 'Analysis',
   'handout': 'Handout',
   'business': 'Business',
