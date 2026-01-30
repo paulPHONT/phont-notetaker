@@ -1,12 +1,14 @@
+import { Info } from "lucide-react";
 import { CurrentlySpeaking } from "./CurrentlySpeaking";
 import { FeatureGrid } from "./FeatureGrid";
 import heroImage from "@/assets/hero-event.jpg";
 
 interface HomeScreenProps {
   onNavigate: (panel: string) => void;
+  onInfoClick?: () => void;
 }
 
-export const HomeScreen = ({ onNavigate }: HomeScreenProps) => {
+export const HomeScreen = ({ onNavigate, onInfoClick }: HomeScreenProps) => {
   const handleViewTranscript = () => {
     onNavigate('handout');
   };
@@ -23,6 +25,16 @@ export const HomeScreen = ({ onNavigate }: HomeScreenProps) => {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
+          
+          {/* Info Button - positioned in hero */}
+          {onInfoClick && (
+            <button 
+              onClick={onInfoClick}
+              className="absolute top-3 right-3 p-2 glass-panel rounded-full text-foreground/80 hover:text-foreground transition-colors"
+            >
+              <Info className="w-5 h-5" strokeWidth={1.5} />
+            </button>
+          )}
         </div>
         
         {/* Currently Speaking - moved down, still overlapping */}

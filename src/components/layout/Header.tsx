@@ -29,8 +29,8 @@ export const Header = ({
       className
     )}>
       <div className="flex items-center justify-between h-16 px-4 max-w-4xl mx-auto">
-        {/* Left side */}
-        <div className="flex items-center min-w-0 flex-1">
+        {/* Left side - Logo or Back */}
+        <div className="flex items-center min-w-0">
           {showBack ? (
             <button 
               onClick={onBack}
@@ -43,8 +43,8 @@ export const Header = ({
           )}
         </div>
         
-        {/* Center - Event or Panel Title */}
-        <div className="flex-shrink-0 text-center">
+        {/* Center/Right - Event or Panel Title */}
+        <div className="text-right">
           {title ? (
             <h1 className="text-base font-display font-normal tracking-tight">{title}</h1>
           ) : eventTitle ? (
@@ -52,18 +52,6 @@ export const Header = ({
               {eventTitle} {eventYear && <span className="text-accent">{eventYear}</span>}
             </h1>
           ) : null}
-        </div>
-        
-        {/* Right side */}
-        <div className="flex items-center justify-end min-w-0 flex-1">
-          {showInfo && onInfoClick && (
-            <button 
-              onClick={onInfoClick}
-              className="p-2 -mr-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Info className="w-5 h-5" strokeWidth={1.5} />
-            </button>
-          )}
         </div>
       </div>
     </header>
