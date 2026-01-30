@@ -70,17 +70,14 @@ const Index = () => {
   const isHome = view === 'home' && !activePanel && !activeFeature;
 
   const renderContent = () => {
-    // Info view
     if (view === 'info') {
       return <InfoScreen />;
     }
 
-    // Feature view (inside Social Content)
     if (activeFeature) {
       return <MockOutput type={activeFeature} />;
     }
 
-    // Panel views
     if (activePanel) {
       switch (activePanel) {
         case 'social':
@@ -98,7 +95,6 @@ const Index = () => {
       }
     }
 
-    // Home screen
     return <HomeScreen onNavigate={handleNavigate} />;
   };
 
@@ -106,7 +102,8 @@ const Index = () => {
     <div className="min-h-screen bg-background dark">
       <Header 
         title={getTitle()} 
-        eventTitle={isHome ? "Future of Energy Summit 2025" : undefined}
+        eventTitle={isHome ? "Future of Energy Summit" : undefined}
+        eventYear={isHome ? "2025" : undefined}
         showBack={showBack} 
         onBack={handleBack}
         onInfoClick={handleInfoClick}
