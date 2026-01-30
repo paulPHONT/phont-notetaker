@@ -39,7 +39,7 @@ export const Header = ({
               <ArrowLeft className="w-5 h-5" strokeWidth={1.5} />
             </button>
           ) : (
-            <img src={phontLogo} alt="PHONT" className="h-8 w-auto object-contain" />
+            <img src={phontLogo} alt="PHONT" className="h-6 w-auto object-contain" />
           )}
         </div>
         
@@ -48,7 +48,7 @@ export const Header = ({
           {title ? (
             <h1 className="text-base font-display font-normal tracking-tight">{title}</h1>
           ) : eventTitle ? (
-            <h1 className="text-xl sm:text-2xl font-display font-normal tracking-tight">
+            <h1 className="text-base sm:text-lg font-display font-normal tracking-tight">
               {eventTitle} {eventYear && <span className="text-accent">{eventYear}</span>}
             </h1>
           ) : null}
