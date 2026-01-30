@@ -9,7 +9,7 @@ export const InfoScreen = () => {
           
           {/* Logo and tagline */}
           <div className="text-center space-y-4 opacity-0 fade-in">
-            <img src={phontLogo} alt="PHONT" className="h-12 w-auto mx-auto" />
+            <img src={phontLogo} alt="PHONT" className="h-12 w-auto object-contain mx-auto" />
             <p className="text-muted-foreground">
               What was said. What mattered. What can be reused.
             </p>

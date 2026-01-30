@@ -15,8 +15,8 @@ export const HomeScreen = ({ onNavigate }: HomeScreenProps) => {
     <div className="min-h-[calc(100dvh-4rem)] flex flex-col">
       {/* Hero Section - responsive height */}
       <section className="relative flex-shrink-0">
-        {/* Hero Image */}
-        <div className="relative h-28 sm:h-40 md:h-56 overflow-hidden">
+        {/* Hero Image - bigger */}
+        <div className="relative h-36 sm:h-48 md:h-64 overflow-hidden">
           <img 
             src={heroImage} 
             alt="Event stage with dramatic lighting" 
@@ -25,8 +25,8 @@ export const HomeScreen = ({ onNavigate }: HomeScreenProps) => {
           <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
         </div>
         
-        {/* Currently Speaking - overlapping hero, responsive margins */}
-        <div className="px-4 -mt-8 sm:-mt-12 relative z-10">
+        {/* Currently Speaking - moved down, still overlapping */}
+        <div className="px-4 -mt-6 sm:-mt-10 relative z-10">
           <div className="max-w-lg mx-auto">
             <CurrentlySpeaking 
               className="opacity-0 fade-in" 

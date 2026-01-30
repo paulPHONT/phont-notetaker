@@ -39,7 +39,7 @@ export const Header = ({
               <ArrowLeft className="w-5 h-5" strokeWidth={1.5} />
             </button>
           ) : (
-            <img src={phontLogo} alt="PHONT" className="h-8 w-auto" />
+            <img src={phontLogo} alt="PHONT" className="h-8 w-auto object-contain" />
           )}
         </div>
         
