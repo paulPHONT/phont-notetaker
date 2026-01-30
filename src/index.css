@@ -138,14 +138,14 @@
 @layer components {
   .glass-panel {
     @apply backdrop-blur-xl border rounded-lg;
-    background: hsl(var(--glass-bg));
-    border-color: hsl(var(--glass-border));
+    background: hsl(0 0% 100% / 0.02);
+    border-color: hsl(0 0% 100% / 0.06);
   }
 
   .glass-panel-strong {
     @apply backdrop-blur-2xl border rounded-lg;
-    background: hsl(0 0% 100% / 0.06);
-    border-color: hsl(var(--glass-border));
+    background: hsl(0 0% 100% / 0.04);
+    border-color: hsl(0 0% 100% / 0.08);
   }
 
   .accent-glow {
