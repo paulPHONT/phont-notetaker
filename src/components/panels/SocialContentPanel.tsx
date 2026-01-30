@@ -24,35 +24,32 @@ const GridItem = ({ icon: Icon, label, subtitle, image, onClick, delay = 0 }: Gr
     <button
       onClick={onClick}
       className={cn(
-        "nav-panel p-0 overflow-hidden text-left opacity-0 slide-up",
+        "nav-panel p-0 overflow-hidden text-left aspect-[2/3] opacity-0 slide-up",
         "hover:border-accent/40 group"
       )}
       style={{ animationDelay: `${delay}ms` }}
     >
-      {/* Horizontal layout */}
-      <div className="flex h-24 sm:h-28">
-        {/* Image */}
-        <div className="relative w-24 sm:w-28 flex-shrink-0 overflow-hidden">
-          <img 
-            src={image} 
-            alt={label}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-card/50" />
+      {/* Sample Image */}
+      <div className="relative h-2/3 overflow-hidden">
+        <img 
+          src={image} 
+          alt={label}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
+        <div className="absolute top-3 left-3">
+          <Icon className="w-6 h-6 text-foreground drop-shadow-lg" strokeWidth={1} />
         </div>
-        
-        {/* Content */}
-        <div className="flex-1 p-4 flex flex-col justify-center">
-          <div className="flex items-center gap-2 mb-1">
-            <Icon className="w-4 h-4 text-accent flex-shrink-0" strokeWidth={1.5} />
-            <h3 className="text-sm font-display font-medium tracking-tight text-foreground">
-              {label}
-            </h3>
-          </div>
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            {subtitle}
-          </p>
-        </div>
+      </div>
+      
+      {/* Label */}
+      <div className="p-3 h-1/3 flex flex-col justify-center">
+        <h3 className="text-sm font-display font-medium tracking-tight text-foreground mb-1">
+          {label}
+        </h3>
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          {subtitle}
+        </p>
       </div>
     </button>
   );
@@ -102,8 +99,8 @@ export const SocialContentPanel = ({ onSelectFeature }: SocialContentPanelProps)
             </p>
           </div>
           
-          {/* Stacked list */}
-          <div className="space-y-3">
+          {/* 2x2 Grid */}
+          <div className="grid grid-cols-2 gap-3">
             {features.map((feature, index) => (
               <GridItem
                 key={feature.id}
