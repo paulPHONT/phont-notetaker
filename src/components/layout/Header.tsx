@@ -5,6 +5,7 @@ import phontLogo from "@/assets/phont-logo.png";
 interface HeaderProps {
   title?: string;
   eventTitle?: string;
+  eventYear?: string;
   showBack?: boolean;
   onBack?: () => void;
   onInfoClick?: () => void;
@@ -15,6 +16,7 @@ interface HeaderProps {
 export const Header = ({ 
   title, 
   eventTitle,
+  eventYear,
   showBack, 
   onBack, 
   onInfoClick,
@@ -37,7 +39,7 @@ export const Header = ({
               <ArrowLeft className="w-5 h-5" strokeWidth={1.5} />
             </button>
           ) : (
-            <img src={phontLogo} alt="PHONT" className="h-7 w-auto" />
+            <img src={phontLogo} alt="PHONT" className="h-8 w-auto" />
           )}
         </div>
         
@@ -46,7 +48,9 @@ export const Header = ({
           {title ? (
             <h1 className="text-base font-display font-normal tracking-tight">{title}</h1>
           ) : eventTitle ? (
-            <h1 className="text-lg font-display font-normal tracking-tight">{eventTitle}</h1>
+            <h1 className="text-xl font-display font-normal tracking-tight">
+              {eventTitle} {eventYear && <span className="text-accent">{eventYear}</span>}
+            </h1>
           ) : null}
         </div>
         

@@ -1,6 +1,10 @@
 import { Image, Video, Quote, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LucideIcon } from "lucide-react";
+import samplePoster from "@/assets/sample-poster.jpg";
+import sampleClips from "@/assets/sample-clips.jpg";
+import sampleQuotes from "@/assets/sample-quotes.jpg";
+import samplePress from "@/assets/sample-press.jpg";
 
 interface SocialContentPanelProps {
   onSelectFeature: (feature: string) => void;
@@ -10,28 +14,40 @@ interface GridItemProps {
   icon: LucideIcon;
   label: string;
   subtitle: string;
+  image: string;
   onClick: () => void;
   delay?: number;
 }
 
-const GridItem = ({ icon: Icon, label, subtitle, onClick, delay = 0 }: GridItemProps) => {
+const GridItem = ({ icon: Icon, label, subtitle, image, onClick, delay = 0 }: GridItemProps) => {
   return (
     <button
       onClick={onClick}
       className={cn(
-        "nav-panel p-4 text-left flex items-center gap-4 aspect-square opacity-0 slide-up",
-        "hover:border-accent/40"
+        "nav-panel p-0 overflow-hidden text-left aspect-square opacity-0 slide-up",
+        "hover:border-accent/40 group"
       )}
       style={{ animationDelay: `${delay}ms` }}
     >
-      <div className="flex-shrink-0">
-        <Icon className="w-10 h-10 text-foreground" strokeWidth={1} />
+      {/* Sample Image */}
+      <div className="relative h-2/3 overflow-hidden">
+        <img 
+          src={image} 
+          alt={label}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
+        <div className="absolute top-3 left-3">
+          <Icon className="w-6 h-6 text-foreground drop-shadow-lg" strokeWidth={1} />
+        </div>
       </div>
-      <div className="min-w-0">
+      
+      {/* Label */}
+      <div className="p-3 h-1/3 flex flex-col justify-center">
         <h3 className="text-sm font-display font-normal tracking-tight text-foreground mb-0.5">
           {label}
         </h3>
-        <p className="text-xs text-muted-foreground leading-snug">
+        <p className="text-xs text-muted-foreground leading-snug line-clamp-1">
           {subtitle}
         </p>
       </div>
@@ -46,24 +62,28 @@ export const SocialContentPanel = ({ onSelectFeature }: SocialContentPanelProps)
       icon: Image,
       label: 'Poster Generator',
       subtitle: 'Bold typographic posters',
+      image: samplePoster,
     },
     {
       id: 'clips',
       icon: Video,
       label: 'Highlight Clips',
       subtitle: 'Video with subtitles',
+      image: sampleClips,
     },
     {
       id: 'quotes',
       icon: Quote,
       label: 'Quote Cards',
       subtitle: 'Speaker + quote layout',
+      image: sampleQuotes,
     },
     {
       id: 'press',
       icon: FileText,
       label: 'Press Releases',
       subtitle: 'Highlighted quotes',
+      image: samplePress,
     },
   ];
 
@@ -87,6 +107,7 @@ export const SocialContentPanel = ({ onSelectFeature }: SocialContentPanelProps)
                 icon={feature.icon}
                 label={feature.label}
                 subtitle={feature.subtitle}
+                image={feature.image}
                 onClick={() => onSelectFeature(feature.id)}
                 delay={100 + index * 50}
               />

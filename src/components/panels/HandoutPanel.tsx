@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FileText, Quote, Lightbulb, Book, Newspaper, ChevronDown, ChevronUp } from "lucide-react";
+import { FileText, Quote, Lightbulb, Book, Newspaper, ChevronDown, ChevronUp, Download } from "lucide-react";
 
 export const HandoutPanel = () => {
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
@@ -36,10 +36,21 @@ export const HandoutPanel = () => {
       <section className="px-4 pt-6">
         <div className="max-w-lg mx-auto space-y-6">
           
+          {/* Download Summary Button */}
+          <div className="opacity-0 slide-up" style={{ animationDelay: '50ms' }}>
+            <button className="w-full glass-panel-strong rounded-xl p-4 flex items-center justify-between hover:border-accent/40 transition-colors">
+              <span className="text-sm font-display font-semibold flex items-center gap-2">
+                <Download className="w-4 h-4 text-accent" strokeWidth={1.5} />
+                Download Summary
+              </span>
+              <span className="text-xs text-muted-foreground">PDF</span>
+            </button>
+          </div>
+          
           {/* Short Summary */}
           <div className="opacity-0 slide-up" style={{ animationDelay: '100ms' }}>
             <h3 className="text-sm font-display font-semibold mb-3 flex items-center gap-2">
-              <FileText className="w-4 h-4 text-accent" />
+              <FileText className="w-4 h-4 text-accent" strokeWidth={1.5} />
               Summary
             </h3>
             <div className="glass-panel-strong rounded-xl p-5">
@@ -56,7 +67,7 @@ export const HandoutPanel = () => {
               className="w-full glass-panel-strong rounded-xl p-4 flex items-center justify-between"
             >
               <span className="text-sm font-display font-semibold flex items-center gap-2">
-                <FileText className="w-4 h-4 text-accent" />
+                <FileText className="w-4 h-4 text-accent" strokeWidth={1.5} />
                 Full Transcript
               </span>
               {expandedSections.transcript ? (
@@ -80,7 +91,7 @@ export const HandoutPanel = () => {
           {/* Top Quotes */}
           <div className="opacity-0 slide-up" style={{ animationDelay: '200ms' }}>
             <h3 className="text-sm font-display font-semibold mb-3 flex items-center gap-2">
-              <Quote className="w-4 h-4 text-accent" />
+              <Quote className="w-4 h-4 text-accent" strokeWidth={1.5} />
               Top Quotes
             </h3>
             <div className="space-y-3">
@@ -96,7 +107,7 @@ export const HandoutPanel = () => {
           {/* Key Learnings */}
           <div className="opacity-0 slide-up" style={{ animationDelay: '250ms' }}>
             <h3 className="text-sm font-display font-semibold mb-3 flex items-center gap-2">
-              <Lightbulb className="w-4 h-4 text-accent" />
+              <Lightbulb className="w-4 h-4 text-accent" strokeWidth={1.5} />
               Key Learnings
             </h3>
             <div className="glass-panel-strong rounded-xl p-5">
@@ -118,7 +129,7 @@ export const HandoutPanel = () => {
               className="w-full glass-panel-strong rounded-xl p-4 flex items-center justify-between"
             >
               <span className="text-sm font-display font-semibold flex items-center gap-2">
-                <Book className="w-4 h-4 text-accent" />
+                <Book className="w-4 h-4 text-accent" strokeWidth={1.5} />
                 Glossary
               </span>
               {expandedSections.glossary ? (
@@ -142,7 +153,7 @@ export const HandoutPanel = () => {
           {/* Journalist Briefing */}
           <div className="opacity-0 slide-up" style={{ animationDelay: '350ms' }}>
             <h3 className="text-sm font-display font-semibold mb-3 flex items-center gap-2">
-              <Newspaper className="w-4 h-4 text-accent" />
+              <Newspaper className="w-4 h-4 text-accent" strokeWidth={1.5} />
               Journalist Briefing
             </h3>
             <div className="glass-panel-strong rounded-xl p-5 space-y-4">
