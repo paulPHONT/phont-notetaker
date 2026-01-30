@@ -1,4 +1,7 @@
 import { Sparkles } from "lucide-react";
+import thumbPost from "@/assets/thumb-post.jpg";
+import thumbClips from "@/assets/thumb-clips.jpg";
+import thumbQuotes from "@/assets/thumb-quotes.jpg";
 
 interface MockOutputProps {
   type: 'poster' | 'clips' | 'quotes' | 'press';
@@ -12,7 +15,8 @@ export const MockOutput = ({ type }: MockOutputProps) => {
           <div className="space-y-6">
             {/* Poster Preview */}
             <div className="aspect-[4/5] glass-panel-strong rounded-xl p-6 flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent" />
+              <img src={thumbPost} alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
               <div className="relative">
                 <span className="phont-badge">Generated Output</span>
               </div>
@@ -45,7 +49,8 @@ export const MockOutput = ({ type }: MockOutputProps) => {
           <div className="space-y-6">
             {/* Video Preview */}
             <div className="aspect-[9/16] max-w-[280px] mx-auto glass-panel-strong rounded-xl relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/80" />
+              <img src={thumbClips} alt="" className="absolute inset-0 w-full h-full object-cover opacity-40" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background/90" />
               
               {/* Video content placeholder */}
               <div className="absolute inset-0 flex items-center justify-center">
@@ -81,10 +86,11 @@ export const MockOutput = ({ type }: MockOutputProps) => {
           <div className="space-y-6">
             {/* Quote Card Preview */}
             <div className="glass-panel-strong rounded-xl p-6 space-y-4 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent" />
-              <span className="phont-badge relative">Generated Output</span>
+              <img src={thumbQuotes} alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
+              <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/80 to-background/70" />
+              <span className="phont-badge relative z-10">Generated Output</span>
               
-              <div className="relative flex gap-4">
+              <div className="relative z-10 flex gap-4">
                 {/* Speaker avatar */}
                 <div className="flex-shrink-0">
                   <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent/30 to-accent/10" />
@@ -97,11 +103,11 @@ export const MockOutput = ({ type }: MockOutputProps) => {
                 </div>
               </div>
               
-              <blockquote className="relative text-lg font-display leading-snug editorial-quote">
+              <blockquote className="relative z-10 text-lg font-display leading-snug editorial-quote">
                 "By 2030, we expect 40% of all commercial buildings to operate as micro-grids."
               </blockquote>
               
-              <div className="relative flex items-center justify-between pt-2">
+              <div className="relative z-10 flex items-center justify-between pt-2">
                 <span className="text-xs text-muted-foreground">11:24 AM • Main Stage</span>
                 <span className="text-xs font-display font-bold text-accent">PHONT</span>
               </div>
