@@ -48,7 +48,7 @@ export const Header = ({
           {title ? (
             <h1 className="text-base font-display font-normal tracking-tight">{title}</h1>
           ) : eventTitle ? (
-            <h1 className="text-xl font-display font-normal tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-display font-normal tracking-tight">
               {eventTitle} {eventYear && <span className="text-accent">{eventYear}</span>}
             </h1>
           ) : null}
