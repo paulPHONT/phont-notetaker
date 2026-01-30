@@ -19,10 +19,10 @@ const GridItem = ({ icon: Icon, label, subtitle, onClick, isFeatureHeader, delay
   if (isFeatureHeader) {
     return (
       <div 
-        className="glass-panel-strong p-4 flex flex-col justify-center opacity-0 slide-up"
+        className="p-4 flex flex-col justify-center opacity-0 slide-up"
         style={{ animationDelay: `${delay}ms` }}
       >
-        <h2 className="text-lg font-display font-bold tracking-tight mb-1">Features</h2>
+        <h2 className="text-2xl font-display font-normal tracking-tight mb-1">Features</h2>
         <p className="text-xs text-muted-foreground">Everything you need to know.</p>
       </div>
     );
@@ -32,18 +32,18 @@ const GridItem = ({ icon: Icon, label, subtitle, onClick, isFeatureHeader, delay
     <button
       onClick={onClick}
       className={cn(
-        "nav-panel p-4 text-left flex flex-col justify-between min-h-[120px] opacity-0 slide-up",
+        "nav-panel p-4 text-left flex items-center gap-4 min-h-[100px] opacity-0 slide-up",
         "hover:border-accent/40"
       )}
       style={{ animationDelay: `${delay}ms` }}
     >
       {Icon && (
-        <div className="mb-3">
-          <Icon className="w-7 h-7 text-accent" strokeWidth={1.5} />
+        <div className="flex-shrink-0">
+          <Icon className="w-10 h-10 text-foreground" strokeWidth={1} />
         </div>
       )}
-      <div>
-        <h3 className="text-sm font-display font-semibold tracking-tight text-foreground mb-0.5">
+      <div className="min-w-0">
+        <h3 className="text-sm font-display font-normal tracking-tight text-foreground mb-0.5">
           {label}
         </h3>
         <p className="text-xs text-muted-foreground leading-snug">
