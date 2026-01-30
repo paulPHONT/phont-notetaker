@@ -35,7 +35,7 @@ export const MockOutput = ({ type }: MockOutputProps) => {
               </div>
               <div className="relative flex items-center justify-between">
                 <span className="text-xs text-muted-foreground">Future of Energy Summit 2025</span>
-                <img src={phontLogo} alt="PHONT" className="h-4 w-auto" />
+                <img src={phontLogo} alt="PHONT" className="h-4 w-auto object-contain flex-shrink-0" />
               </div>
             </div>
             
@@ -72,7 +72,7 @@ export const MockOutput = ({ type }: MockOutputProps) => {
               
               {/* PHONT watermark */}
               <div className="absolute top-4 right-4">
-                <img src={phontLogo} alt="PHONT" className="h-4 w-auto opacity-80" />
+                <img src={phontLogo} alt="PHONT" className="h-4 w-auto object-contain" />
               </div>
             </div>
             
@@ -110,7 +110,7 @@ export const MockOutput = ({ type }: MockOutputProps) => {
               
               <div className="relative z-10 flex items-center justify-between pt-2">
                 <span className="text-xs text-muted-foreground">11:24 AM • Main Stage</span>
-                <img src={phontLogo} alt="PHONT" className="h-4 w-auto" />
+                <img src={phontLogo} alt="PHONT" className="h-4 w-auto object-contain flex-shrink-0" />
               </div>
             </div>
             
@@ -148,7 +148,7 @@ export const MockOutput = ({ type }: MockOutputProps) => {
               
               <div className="pt-2 flex items-center justify-between">
                 <span className="text-xs text-muted-foreground">Auto-formatted from session transcript</span>
-                <img src={phontLogo} alt="PHONT" className="h-4 w-auto" />
+                <img src={phontLogo} alt="PHONT" className="h-4 w-auto object-contain flex-shrink-0" />
               </div>
             </div>
             

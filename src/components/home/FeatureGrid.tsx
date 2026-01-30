@@ -29,10 +29,10 @@ const GridItem = ({ icon: Icon, label, subtitle, onClick, isFeatureHeader, delay
   if (isFeatureHeader) {
     return (
       <div 
-        className="p-3 sm:p-4 flex flex-col justify-center opacity-0 slide-up"
+        className="p-4 sm:p-5 flex flex-col justify-center opacity-0 slide-up"
         style={{ animationDelay: `${delay}ms` }}
       >
-        <h2 className="text-2xl sm:text-3xl font-display font-normal tracking-tight mb-0.5 sm:mb-1">Features</h2>
+        <h2 className="text-2xl sm:text-3xl font-display font-normal tracking-tight mb-1 sm:mb-1.5">Features</h2>
         <p className="text-xs text-muted-foreground">Everything you need.</p>
       </div>
     );
@@ -42,7 +42,7 @@ const GridItem = ({ icon: Icon, label, subtitle, onClick, isFeatureHeader, delay
     <button
       onClick={onClick}
       className={cn(
-        "nav-panel p-3 sm:p-4 text-left flex items-center gap-3 sm:gap-4 opacity-0 slide-up",
+        "nav-panel p-4 sm:p-5 text-left flex items-center gap-3 sm:gap-4 opacity-0 slide-up",
         "hover:border-accent/40"
       )}
       style={{ animationDelay: `${delay}ms` }}
@@ -142,8 +142,8 @@ export const FeatureGrid = ({ onNavigate }: FeatureGridProps) => {
           </button>
         </div>
 
-        {/* 2x3 Grid - auto height */}
-        <div className="grid grid-cols-2 gap-2 sm:gap-3">
+        {/* 2x3 Grid - auto height with more gap */}
+        <div className="grid grid-cols-2 gap-3 sm:gap-4">
           {/* Feature Header Cell */}
           <GridItem 
             label="Features" 
