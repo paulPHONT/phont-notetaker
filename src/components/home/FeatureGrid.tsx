@@ -29,10 +29,10 @@ const GridItem = ({ icon: Icon, label, subtitle, onClick, isFeatureHeader, delay
   if (isFeatureHeader) {
     return (
       <div 
-        className="p-4 flex flex-col justify-center opacity-0 slide-up"
+        className="p-3 sm:p-4 flex flex-col justify-center opacity-0 slide-up"
         style={{ animationDelay: `${delay}ms` }}
       >
-        <h2 className="text-3xl font-display font-normal tracking-tight mb-1">Features</h2>
+        <h2 className="text-2xl sm:text-3xl font-display font-normal tracking-tight mb-0.5 sm:mb-1">Features</h2>
         <p className="text-xs text-muted-foreground">Everything you need.</p>
       </div>
     );
@@ -42,21 +42,21 @@ const GridItem = ({ icon: Icon, label, subtitle, onClick, isFeatureHeader, delay
     <button
       onClick={onClick}
       className={cn(
-        "nav-panel p-4 text-left flex items-center gap-4 min-h-[100px] opacity-0 slide-up",
+        "nav-panel p-3 sm:p-4 text-left flex items-center gap-3 sm:gap-4 opacity-0 slide-up",
         "hover:border-accent/40"
       )}
       style={{ animationDelay: `${delay}ms` }}
     >
       {Icon && (
         <div className="flex-shrink-0">
-          <Icon className="w-10 h-10 text-foreground" strokeWidth={1} />
+          <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-foreground" strokeWidth={1} />
         </div>
       )}
       <div className="min-w-0">
-        <h3 className="text-sm font-display font-normal tracking-tight text-foreground mb-0.5">
+        <h3 className="text-xs sm:text-sm font-display font-normal tracking-tight text-foreground mb-0.5">
           {label}
         </h3>
-        <p className="text-xs text-muted-foreground leading-snug">
+        <p className="text-xs text-muted-foreground leading-snug hidden sm:block">
           {subtitle}
         </p>
       </div>
@@ -104,13 +104,13 @@ export const FeatureGrid = ({ onNavigate }: FeatureGridProps) => {
 
   return (
     <>
-      <div className="space-y-6">
+      <div className="h-full flex flex-col gap-3 sm:gap-4">
         {/* View Mode Pills */}
-        <div className="opacity-0 fade-in flex gap-2" style={{ animationDelay: '50ms' }}>
+        <div className="opacity-0 fade-in flex gap-2 flex-shrink-0" style={{ animationDelay: '50ms' }}>
           <button
             onClick={() => handleViewModeClick('current')}
             className={cn(
-              "px-4 py-2 rounded-full text-xs font-medium transition-all",
+              "px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-medium transition-all",
               viewMode === 'current'
                 ? "bg-accent text-accent-foreground"
                 : "glass-panel text-muted-foreground hover:text-foreground"
@@ -121,7 +121,7 @@ export const FeatureGrid = ({ onNavigate }: FeatureGridProps) => {
           <button
             onClick={() => handleViewModeClick('another')}
             className={cn(
-              "px-4 py-2 rounded-full text-xs font-medium transition-all",
+              "px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-medium transition-all",
               viewMode === 'another'
                 ? "bg-accent text-accent-foreground"
                 : "glass-panel text-muted-foreground hover:text-foreground"
@@ -132,7 +132,7 @@ export const FeatureGrid = ({ onNavigate }: FeatureGridProps) => {
           <button
             onClick={() => handleViewModeClick('event')}
             className={cn(
-              "px-4 py-2 rounded-full text-xs font-medium transition-all",
+              "px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-medium transition-all",
               viewMode === 'event'
                 ? "bg-accent text-accent-foreground"
                 : "glass-panel text-muted-foreground hover:text-foreground"
@@ -142,8 +142,8 @@ export const FeatureGrid = ({ onNavigate }: FeatureGridProps) => {
           </button>
         </div>
 
-        {/* 2x3 Grid */}
-        <div className="grid grid-cols-2 gap-3">
+        {/* 2x3 Grid - fills remaining space */}
+        <div className="grid grid-cols-2 gap-2 sm:gap-3 flex-1 auto-rows-fr">
           {/* Feature Header Cell */}
           <GridItem 
             label="Features" 
