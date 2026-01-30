@@ -91,11 +91,11 @@ const Index = () => {
         case 'social-wall':
           return <SocialWallPanel />;
         default:
-          return <HomeScreen onNavigate={handleNavigate} />;
+          return <HomeScreen onNavigate={handleNavigate} onInfoClick={handleInfoClick} />;
       }
     }
 
-    return <HomeScreen onNavigate={handleNavigate} />;
+    return <HomeScreen onNavigate={handleNavigate} onInfoClick={handleInfoClick} />;
   };
 
   return (
