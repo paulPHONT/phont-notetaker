@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Share2, BarChart3, FileText, Briefcase, MessageCircle } from "lucide-react";
+import { Share2, BarChart3, FileText, Briefcase, MessageCircle, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LucideIcon } from "lucide-react";
 
@@ -17,6 +17,13 @@ interface GridItemProps {
 }
 
 type ViewMode = 'current' | 'another' | 'event';
+
+interface TalkSlot {
+  id: string;
+  time: string;
+  title: string;
+  speaker: string;
+}
 
 const GridItem = ({ icon: Icon, label, subtitle, onClick, isFeatureHeader, delay = 0 }: GridItemProps) => {
   if (isFeatureHeader) {
@@ -59,12 +66,31 @@ const GridItem = ({ icon: Icon, label, subtitle, onClick, isFeatureHeader, delay
 
 export const FeatureGrid = ({ onNavigate }: FeatureGridProps) => {
   const [viewMode, setViewMode] = useState<ViewMode>('current');
+  const [showTalkPicker, setShowTalkPicker] = useState(false);
+  const [selectedTalk, setSelectedTalk] = useState<string | null>(null);
 
-  const viewModes: { id: ViewMode; label: string }[] = [
-    { id: 'current', label: 'Current Talk' },
-    { id: 'another', label: 'Another Talk' },
-    { id: 'event', label: 'Whole Event' },
+  const talkSlots: TalkSlot[] = [
+    { id: '1', time: '09:00', title: 'Opening Keynote', speaker: 'James Wilson' },
+    { id: '2', time: '10:30', title: 'Grid Modernization', speaker: 'Dr. Sarah Mitchell' },
+    { id: '3', time: '14:00', title: 'Investor Panel', speaker: 'Marcus Chen' },
+    { id: '4', time: '15:30', title: 'Policy Future', speaker: 'Elena Vasquez' },
+    { id: '5', time: '17:00', title: 'Closing Remarks', speaker: 'David Park' },
   ];
+
+  const handleViewModeClick = (mode: ViewMode) => {
+    if (mode === 'another') {
+      setShowTalkPicker(true);
+    } else {
+      setViewMode(mode);
+      setSelectedTalk(null);
+    }
+  };
+
+  const handleSelectTalk = (talkId: string) => {
+    setSelectedTalk(talkId);
+    setViewMode('another');
+    setShowTalkPicker(false);
+  };
 
   const panels = [
     { id: 'social', icon: Share2, label: 'Social Content', subtitle: 'From stage to feed' },
@@ -74,50 +100,117 @@ export const FeatureGrid = ({ onNavigate }: FeatureGridProps) => {
     { id: 'social-wall', icon: MessageCircle, label: 'Social Wall', subtitle: 'What resonated' },
   ];
 
+  const selectedTalkData = talkSlots.find(t => t.id === selectedTalk);
+
   return (
-    <div className="space-y-6">
-      {/* View Mode Switch */}
-      <div className="opacity-0 fade-in" style={{ animationDelay: '50ms' }}>
-        <div className="glass-panel-strong rounded-full p-1 flex">
-          {viewModes.map((mode) => (
-            <button
-              key={mode.id}
-              onClick={() => setViewMode(mode.id)}
-              className={cn(
-                "flex-1 px-3 py-2 rounded-full text-xs font-medium transition-all",
-                viewMode === mode.id
-                  ? "bg-accent text-accent-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              {mode.label}
-            </button>
+    <>
+      <div className="space-y-6">
+        {/* View Mode Pills */}
+        <div className="opacity-0 fade-in flex gap-2" style={{ animationDelay: '50ms' }}>
+          <button
+            onClick={() => handleViewModeClick('current')}
+            className={cn(
+              "px-4 py-2 rounded-full text-xs font-medium transition-all",
+              viewMode === 'current'
+                ? "bg-accent text-accent-foreground"
+                : "glass-panel text-muted-foreground hover:text-foreground"
+            )}
+          >
+            Current Talk
+          </button>
+          <button
+            onClick={() => handleViewModeClick('another')}
+            className={cn(
+              "px-4 py-2 rounded-full text-xs font-medium transition-all",
+              viewMode === 'another'
+                ? "bg-accent text-accent-foreground"
+                : "glass-panel text-muted-foreground hover:text-foreground"
+            )}
+          >
+            {selectedTalkData ? selectedTalkData.time : 'Another Talk'}
+          </button>
+          <button
+            onClick={() => handleViewModeClick('event')}
+            className={cn(
+              "px-4 py-2 rounded-full text-xs font-medium transition-all",
+              viewMode === 'event'
+                ? "bg-accent text-accent-foreground"
+                : "glass-panel text-muted-foreground hover:text-foreground"
+            )}
+          >
+            Whole Event
+          </button>
+        </div>
+
+        {/* 2x3 Grid */}
+        <div className="grid grid-cols-2 gap-3">
+          {/* Feature Header Cell */}
+          <GridItem 
+            label="Features" 
+            subtitle="Everything you need." 
+            isFeatureHeader 
+            delay={100}
+          />
+          
+          {/* Panel Items */}
+          {panels.map((panel, index) => (
+            <GridItem
+              key={panel.id}
+              icon={panel.icon}
+              label={panel.label}
+              subtitle={panel.subtitle}
+              onClick={() => onNavigate(panel.id)}
+              delay={150 + index * 50}
+            />
           ))}
         </div>
       </div>
 
-      {/* 2x3 Grid */}
-      <div className="grid grid-cols-2 gap-3">
-        {/* Feature Header Cell */}
-        <GridItem 
-          label="Features" 
-          subtitle="Everything you need." 
-          isFeatureHeader 
-          delay={100}
-        />
-        
-        {/* Panel Items */}
-        {panels.map((panel, index) => (
-          <GridItem
-            key={panel.id}
-            icon={panel.icon}
-            label={panel.label}
-            subtitle={panel.subtitle}
-            onClick={() => onNavigate(panel.id)}
-            delay={150 + index * 50}
+      {/* Talk Picker Overlay */}
+      {showTalkPicker && (
+        <div className="fixed inset-0 z-50 flex items-end justify-center">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+            onClick={() => setShowTalkPicker(false)}
           />
-        ))}
-      </div>
-    </div>
+          
+          {/* Sheet */}
+          <div className="relative w-full max-w-lg mx-4 mb-4 glass-panel-strong rounded-2xl p-6 slide-up">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-display font-normal">Select Talk</h3>
+              <button 
+                onClick={() => setShowTalkPicker(false)}
+                className="p-2 -mr-2 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <X className="w-5 h-5" strokeWidth={1.5} />
+              </button>
+            </div>
+            
+            <div className="space-y-2">
+              {talkSlots.map((talk) => (
+                <button
+                  key={talk.id}
+                  onClick={() => handleSelectTalk(talk.id)}
+                  className={cn(
+                    "w-full p-4 rounded-xl text-left transition-all",
+                    "glass-panel hover:border-accent/40",
+                    selectedTalk === talk.id && "border-accent/60"
+                  )}
+                >
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm font-medium text-accent">{talk.time}</span>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-display font-normal">{talk.title}</p>
+                      <p className="text-xs text-muted-foreground">{talk.speaker}</p>
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
