@@ -1,13 +1,36 @@
-import { MessageCircle, Quote, Share2, Heart, User } from "lucide-react";
+import { useState } from "react";
+import { MessageCircle, Quote, Share2, Heart, User, Send } from "lucide-react";
 
 export const SocialWallPanel = () => {
-  const liveComments = [
+  const [commentText, setCommentText] = useState("");
+  const [comments, setComments] = useState([
     { author: "Julia M.", text: "That micro-grid prediction is huge if accurate 📊", time: "2m ago", likes: 12 },
     { author: "Tech Reporter", text: "Finally someone addressing the regulatory gap honestly", time: "5m ago", likes: 28 },
     { author: "EnergySector", text: "Dr. Vasquez bringing the fire today 🔥", time: "8m ago", likes: 45 },
     { author: "SustainableNow", text: "This is exactly the urgency we need from industry leaders", time: "12m ago", likes: 19 },
     { author: "GridWatcher", text: "The interoperability discussion needs more airtime", time: "15m ago", likes: 8 },
-  ];
+  ]);
+
+  const handleSubmitComment = () => {
+    if (!commentText.trim()) return;
+    
+    const newComment = {
+      author: "You",
+      text: commentText,
+      time: "Just now",
+      likes: 0,
+    };
+    
+    setComments([newComment, ...comments]);
+    setCommentText("");
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmitComment();
+    }
+  };
 
   return (
     <div className="min-h-screen pb-24">
@@ -82,6 +105,32 @@ export const SocialWallPanel = () => {
             </div>
           </div>
 
+          {/* Comment Input */}
+          <div className="opacity-0 slide-up" style={{ animationDelay: '230ms' }}>
+            <div className="glass-panel-strong rounded-xl p-4">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
+                  <User className="w-4 h-4 text-accent" />
+                </div>
+                <input
+                  type="text"
+                  value={commentText}
+                  onChange={(e) => setCommentText(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Add your reaction..."
+                  className="flex-1 bg-transparent text-sm placeholder:text-muted-foreground focus:outline-none"
+                />
+                <button
+                  onClick={handleSubmitComment}
+                  disabled={!commentText.trim()}
+                  className="p-2 text-accent hover:text-accent/80 disabled:text-muted-foreground disabled:cursor-not-allowed transition-colors"
+                >
+                  <Send className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+
           {/* Live Comments */}
           <div className="opacity-0 slide-up" style={{ animationDelay: '250ms' }}>
             <div className="flex items-center gap-2 mb-3">
@@ -90,7 +139,7 @@ export const SocialWallPanel = () => {
               <span className="ml-auto phont-badge text-[10px]">Simulated</span>
             </div>
             <div className="space-y-2">
-              {liveComments.map((comment, i) => (
+              {comments.map((comment, i) => (
                 <div key={i} className="feed-card opacity-0 slide-up" style={{ animationDelay: `${300 + i * 50}ms` }}>
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium">{comment.author}</span>
